@@ -25,18 +25,11 @@ check_app_diff ()
     echo $DIFF_FILES | grep -E $1
     exit_status=$?
     if [[ $exit_status = 1 ]]; then
-      echo "No changes detected. Aborting build."
-      curl -X POST \
-        https://api.bitrise.io/v0.1/apps/$BITRISE_APP_SLUG/builds/$BITRISE_BUILD_SLUG/abort \
-        -H "authorization: token $BITRISE_TOKEN" \
-        -H 'content-type: application/json; charset=UTF-8' \
-        -d '{
-        "abort_reason": "Build skipped. No changes detected.",
-          "skip_notifications": true,
-          "abort_with_success": true
-      }'
+      echo "No changes detected. Build marked as skippable."
+      SELECTIVE_BUILD_IS_SKIPPABLE=true
     else
       echo "Changes detected. Running build."
+      SELECTIVE_BUILD_IS_SKIPPABLE=false
     fi
     set -e
 }
