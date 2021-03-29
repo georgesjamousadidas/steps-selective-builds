@@ -26,10 +26,10 @@ check_app_diff ()
     exit_status=$?
     if [[ $exit_status = 1 ]]; then
       echo "No changes detected. Build marked as skippable."
-      SELECTIVE_BUILD_IS_SKIPPABLE=true
+      envman add --key SELECTIVE_BUILD_IS_SKIPPABLE --value "true"
     else
       echo "Changes detected. Running build."
-      SELECTIVE_BUILD_IS_SKIPPABLE=false
+      envman add --key SELECTIVE_BUILD_IS_SKIPPABLE --value "false"
     fi
     set -e
 }
