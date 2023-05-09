@@ -14,7 +14,7 @@ git fetch origin "$BITRISEIO_GIT_BRANCH_DEST" --depth 1
 DIFF_FILES="$(git diff --name-only origin/${BITRISEIO_GIT_BRANCH_DEST})"
 
 set +x
-PATH_PATTERN=$(ruby -e 'puts ENV["TRIGGER_PATHS"].strip.split("\n").map { |e| e.gsub("/", "\\/") }.join("|") ')
+PATH_PATTERN=$(echo "$TRIGGER_PATHS" | awk '{gsub("/","\\/"); print}' | tr '\n' '|' | sed 's/^|\(.*\)|$/\1/')
 
 echo "PATH_PATTERN: $PATH_PATTERN"
 set -x
