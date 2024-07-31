@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "EXPECTED_ENV_A: ($EXPECTED_ENV_A)"
+echo "EXPECTED_ENV_B: ($EXPECTED_ENV_B)"
+
 echo "Printing all environment variables:"
 env
 
