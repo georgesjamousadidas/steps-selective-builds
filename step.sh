@@ -1,9 +1,12 @@
 #!/bin/bash
 set -e
 
-for var in $(printenv); do
-  echo "$var"
-done
+echo "Printing all environment variables:"
+env
+
+echo "------\n"
+
+printenv
 
 echo "Running Selective Builds On Path: ($TRIGGER_PATHS)"
 
