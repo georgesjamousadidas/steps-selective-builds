@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+for var in $(printenv); do
+  echo "$var"
+done
+
 echo "Running Selective Builds On Path: ($TRIGGER_PATHS)"
 
 if [ -z "$BITRISEIO_GIT_BRANCH_DEST" ]; then
