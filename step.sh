@@ -1,15 +1,12 @@
 #!/bin/bash
 set -e
 
-echo "EXPECTED_ENV_A: ($EXPECTED_ENV_A)"
-echo "EXPECTED_ENV_B: ($EXPECTED_ENV_B)"
-
-echo "Printing all environment variables:"
-env
-
-echo "------\n"
-
-printenv
+# echo "EXPECTED_ENV_A: ($EXPECTED_ENV_A)"
+# echo "EXPECTED_ENV_B: ($EXPECTED_ENV_B)"
+# echo "Printing all environment variables:"
+# env
+# echo "------\n"
+# printenv
 
 echo "Running Selective Builds On Path: ($TRIGGER_PATHS)"
 
@@ -48,11 +45,11 @@ check_app_diff ()
     set -e
 }
 
-check_app_diff "$PATH_PATTERN"
-
 echo "Diffs worked on:"
 echo "-----"
 echo "$DIFF_FILES"
 echo "-----"
+
+check_app_diff "$PATH_PATTERN"
 
 exit 0
