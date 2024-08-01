@@ -27,7 +27,7 @@ echo "Fetching diffs..."
 DIFF_FILES="$(git diff --name-only origin/${BITRISEIO_GIT_BRANCH_DEST})"
 
 echo "Creating a pattern for trigger paths..."
-PATH_PATTERN=$(echo "$TRIGGER_PATHS" | awk '{gsub("/","\\/"); print}' | tr '\n' '|' | sed 's/^|\(.*\)|$/\1/')
+PATH_PATTERN=$(ruby -e 'puts ENV["TRIGGER_PATHS"].strip.split("\n").map { |e| e.gsub("/", "\\/") }.join("|") ')
 echo "Will use pattern: ($PATH_PATTERN)"
 
 check_app_diff ()
